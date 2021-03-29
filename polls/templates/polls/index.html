@@ -1,37 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Polls</title>
-</head>
 
-<body>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        padding: 0 15%;
+      }
+
+      .title {
+        color: rgb(37, 37, 37);
+        font-weight: 600;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        list-style: none;
+        padding-left: 0;
+      }
+
+      ul li {
+        margin: 10px 0;
+      }
+
+      ul li a {
+        text-decoration: none;
+        color: rgb(68, 68, 68);
+        font-size: 1.2rem;
+      }
+
+      ul li a div {
+        min-width: 220px;
+        min-height: 100px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      ul li a div button {
+        outline: none;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="title">Polls</h1>
 
     {% if recent_five_questions %}
 
     <ul>
+      {% for question in recent_five_questions %}
 
-        {% for question in recent_five_questions %}
+      <li>
+        <a href="{% url 'polls:detail' question.id %}">
+          <div class="card">
+            {{question.question_text}}
 
-        <li>
-            <a href="{% url 'polls:detail' question.id %}">
-                {{question.question_text}}
-            </a>
-        </li>
+            <button>Answer</button>
+          </div>
+        </a>
+      </li>
 
-        {% endfor %}
-
+      {% endfor %}
     </ul>
 
     {% else %}
 
-    <p> No polls are available </p>
+    <p>No polls are available</p>
 
     {% endif %}
-
-</body>
-
+  </body>
 </html>
