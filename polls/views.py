@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+
 from .models import Question
 
 
@@ -16,7 +18,8 @@ def vote(request, question_id):
 
 def index(request):
     recent_five_questions = Question.objects.order_by('-pub_date')[:5]
-    response_view = " ,".join(
-        [question.question_text for question in recent_five_questions])
+    context = {
+        'recent_five_questions': recent_five_questions
+    }
 
-    return HttpResponse(response_view)
+    return render(request, 'polls/index.html', context)
