@@ -5,16 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Result</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        padding: 0 15%;
+      }
+
+      .title {
+        color: rgb(37, 37, 37);
+        font-weight: 600;
+      }
+
+      ul.vote-result-wrapper {
+        padding-left: 0;
+        list-style: none;
+        display: flex;
+        align-items: flex-start;
+        margin-top: 30px;
+        margin-bottom: 80px;
+      }
+
+      ul.vote-result-wrapper li {
+        margin-right: 30px;
+      }
+      ul.vote-result-wrapper li .card {
+        min-width: 190px;
+        min-height: 90px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      ul.vote-result-wrapper li .card h4 {
+        margin: 0;
+        font-weight: 400;
+        font-size: 20px;
+        color: #424242;
+      }
+
+      ul.vote-result-wrapper li .card p {
+        margin: 0;
+        font-weight: 600;
+        font-size: 20px;
+        color: #0f9d58;
+      }
+
+      a {
+        text-decoration: none;
+        color: #656565;
+        border: 1px solid #b7b7b7;
+        padding: 9px 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>{{ question.question_text }}</h1>
+    <h1 class="title">{{ question.question_text }}</h1>
 
-    <ul>
+    <ul class="vote-result-wrapper">
       {% for choice in question.choice_set.all %}
 
       <li>
-        {{ choice.choice_text }} -- {{choice.votes}}
-        vote{{choice.votes|pluralize}}
+        <div class="card">
+          <h4>{{ choice.choice_text }}</h4>
+          <p>{{choice.votes}} vote{{choice.votes|pluralize}}</p>
+        </div>
       </li>
 
       {% endfor %}
