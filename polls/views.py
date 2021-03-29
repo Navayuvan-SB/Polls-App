@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from .models import Question
 
 
 def detail(request, question_id):
@@ -14,4 +15,8 @@ def vote(request, question_id):
 
 
 def index(request):
-    return HttpResponse("Hey buddy! Welcome to django!")
+    recent_five_questions = Question.objects.order_by('-pub_date')[:5]
+    response_view = " ,".join(
+        [question.question_text for question in recent_five_questions])
+
+    return HttpResponse(response_view)
