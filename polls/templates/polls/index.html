@@ -11,25 +11,25 @@
 <body>
 
     {% if recent_five_questions %}
-    
-        <ul>
 
-            {% for question in recent_five_questions %}
-            
-                <li>
-                    <a href="/polls/{{ question.id }}/">
-                        {{question.question_text}}
-                    </a>
-                </li>
-            
-            {% endfor %}
+    <ul>
 
-        </ul>
+        {% for question in recent_five_questions %}
+
+        <li>
+            <a href="{% url 'polls:detail' question.id %}">
+                {{question.question_text}}
+            </a>
+        </li>
+
+        {% endfor %}
+
+    </ul>
 
     {% else %}
 
-        <p> No polls are available </p>
-    
+    <p> No polls are available </p>
+
     {% endif %}
 
 </body>
