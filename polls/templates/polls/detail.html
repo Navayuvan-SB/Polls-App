@@ -22,6 +22,10 @@
         font-weight: 600;
       }
 
+      .error-text {
+        color: #db4437;
+      }
+
       .choices div.radio-wrapper {
         display: flex;
         flex-direction: row;
@@ -72,7 +76,7 @@
     <h1 class="title">{{question.question_text}}</h1>
 
     {% if error_message %}
-    <p><strong> {{ error_message }} </strong></p>
+    <p class="error-text">{{ error_message }}</p>
     {% endif %}
 
     <form
