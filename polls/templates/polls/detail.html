@@ -5,28 +5,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Poll Detail</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        padding: 0 15%;
+      }
+
+      .title {
+        color: rgb(37, 37, 37);
+        font-weight: 600;
+      }
+
+      .choices div.radio-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        margin: 5px 0;
+      }
+
+      .choices div.radio-wrapper input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+      }
+
+      .choices div.radio-wrapper label {
+        font-size: 18px;
+        margin-left: 10px;
+      }
+
+      .choices div.action-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .choices div.action-wrapper input[type="submit"] {
+        outline: none;
+        border: none;
+        padding: 10px 50px;
+        background-color: #0f9d58;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .choices div.action-wrapper a {
+        text-decoration: none;
+        color: #656565;
+        border: 1px solid #b7b7b7;
+        padding: 9px 20px;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>{{question.question_text}}</h1>
+    <h1 class="title">{{question.question_text}}</h1>
 
     {% if error_message %}
     <p><strong> {{ error_message }} </strong></p>
     {% endif %}
 
-    <form action="{% url 'polls:vote' question.id %}" method="POST">
+    <form
+      action="{% url 'polls:vote' question.id %}"
+      method="POST"
+      class="choices"
+    >
       {% csrf_token %} {% for choice in question.choice_set.all %}
-      <input
-        type="radio"
-        name="choice"
-        id="choice{{ forloop.counter }}"
-        value="{{ choice.id }}"
-      />
-      <label for="choice{{ forloop.counter }}">{{choice.choice_text}}</label
-      ><br />
+      <div class="radio-wrapper">
+        <input
+          type="radio"
+          name="choice"
+          id="choice{{ forloop.counter }}"
+          value="{{ choice.id }}"
+        />
+        <label for="choice{{ forloop.counter }}">{{choice.choice_text}}</label>
+      </div>
       {% endfor %}
 
-      <input type="submit" value="Vote" />
+      <div class="action-wrapper">
+        <input type="submit" value="Vote" />
+
+        <a href="{% url 'polls:index'  %}">Back to Home</a>
+      </div>
     </form>
   </body>
 </html>
