@@ -17,3 +17,25 @@ class QuestionModelTests(TestCase):
         date_of_one_month_from_now = timezone.now() + datetime.timedelta(days=30)
         future_question = Question(pub_date=date_of_one_month_from_now)
         self.assertIs(future_question.was_published_recently(), False)
+
+    def test_was_published_recently_with_old_question(self):
+        """
+        was_published_recently() should return False for questions whose pub_date
+        is older than 1 day.
+        """
+
+        date_before_one_day_from_now = timezone.now(
+        ) - datetime.timedelta(days=1, seconds=1)
+        old_question = Question(pub_date=date_before_one_day_from_now)
+        self.assertIs(old_question.was_published_recently(), False)
+
+    def test_was_published_recently_with_recent_question(self):
+        """
+        was_published_recently() should return True for questions whose pub_date
+        is within the last day
+        """
+
+        date_of_last_day = timezone.now() - datetime.timedelta(hours=23,
+                                                               minutes=59, seconds=59)
+        recent_question = Question(pub_date=date_of_last_day)
+        self.assertIs(recent_question.was_published_recently(), True)
