@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +27,9 @@ SECRET_KEY = 'jvh4+jcgf+0y2o^&$7*w=*1@_$_qh5ps0b&o%9+&5mfvdf9deg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# CONFIGURATION: Dotenv for DB credentials
+load_dotenv()
 
 ALLOWED_HOSTS = []
 
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'pollApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pollsApp',
-        'USER': 'yuvan',
+        'USER': os.environ['DB_USER'],
         'HOST': 'localhost',
-        'PASSWORD': 'yuvan'
+        'PASSWORD': os.environ['DB_PASSWORD']
     }
 }
 
@@ -122,3 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

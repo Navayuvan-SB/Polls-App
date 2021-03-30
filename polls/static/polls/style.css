@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  padding: 0 15%;
+}
+
+.title {
+  color: rgb(37, 37, 37);
+  font-weight: 600;
+}
+
+#home ul {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+}
+
+#home ul li {
+  margin: 10px 0;
+}
+
+#home ul li a {
+  text-decoration: none;
+  color: #444;
+  font-size: 1.2rem;
+}
+
+#home ul li a div {
+  width: 220px;
+  min-height: 125px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#home ul li a div button {
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #0f9d58;
+  color: #fff;
+  margin-top: 25px;
+}
+
+#detail .error-text {
+  color: #db4437;
+}
+
+#detail .choices div.radio-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#detail .choices div.radio-wrapper input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+#detail .choices div.radio-wrapper label {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+#detail .choices div.action-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+#detail .choices div.action-wrapper input[type="submit"] {
+  outline: none;
+  border: none;
+  padding: 10px 50px;
+  background-color: #0f9d58;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#detail .choices div.action-wrapper a {
+  text-decoration: none;
+  color: #656565;
+  border: 1px solid #b7b7b7;
+  padding: 9px 20px;
+}
+
+#result ul.vote-result-wrapper {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+
+#result ul.vote-result-wrapper li {
+  margin-right: 30px;
+}
+
+#result ul.vote-result-wrapper li .card {
+  min-width: 190px;
+  min-height: 90px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#result ul.vote-result-wrapper li .card h4 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  color: #424242;
+}
+
+#result ul.vote-result-wrapper li .card p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  color: #0f9d58;
+}
+
+#result a {
+  text-decoration: none;
+  color: #656565;
+  border: 1px solid #b7b7b7;
+  padding: 9px 20px;
+}
